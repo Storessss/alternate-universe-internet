@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://0ookxywmhjip"]
+
+[ext_resource type="Script" uid="uid://dlgebkao18r7a" path="res://scenes/components/letter.gd" id="1_c714o"]
+[ext_resource type="Texture2D" uid="uid://b1qun8ql4c6m5" path="res://sprites/letter.png" id="2_c714o"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mur1n"]
+radius = 6.0
+
+[node name="Letter" type="CharacterBody2D"]
+script = ExtResource("1_c714o")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_c714o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mur1n")
