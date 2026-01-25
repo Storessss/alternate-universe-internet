@@ -1,47 +1,89 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnc6qddvb8eqb"]
+[gd_scene load_steps=5 format=3 uid="uid://cnc6qddvb8eqb"]
 
 [ext_resource type="Script" uid="uid://cclsalk6namg2" path="res://scenes/interfaces/pmp_interface.gd" id="1_xcigb"]
+[ext_resource type="Shader" uid="uid://7t1ddkrlxaw0" path="res://scenes/interfaces/vignette.gdshader" id="2_li6gy"]
+[ext_resource type="Theme" uid="uid://db6upxfpbs22v" path="res://styles/MinimalUI.tres" id="3_rsmw0"]
 
-[sub_resource type="Gradient" id="Gradient_q3b7x"]
-offsets = PackedFloat32Array(0, 0.62, 0.8933333)
-colors = PackedColorArray(0.737193, 0.7371929, 0.7371929, 1, 0.50534403, 0.50534415, 0.5053436, 1, 0.39688927, 0.39688924, 0.39688936, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_xcigb"]
-gradient = SubResource("Gradient_q3b7x")
-fill = 1
-fill_from = Vector2(0.49532712, 0.47663552)
-fill_to = Vector2(0.30373833, 0.9953271)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rsmw0"]
+shader = ExtResource("2_li6gy")
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.82400003914
+shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [node name="PmpInterface" type="Window"]
 canvas_item_default_texture_filter = 0
 oversampling_override = 1.0
 title = "PMP v1.0"
 initial_position = 2
-size = Vector2i(250, 250)
+size = Vector2i(350, 350)
+transient = true
+always_on_top = true
 script = ExtResource("1_xcigb")
 
-[node name="Background" type="TextureRect" parent="."]
-offset_right = 253.0
-offset_bottom = 253.0
-texture = SubResource("GradientTexture2D_xcigb")
+[node name="Background" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_rsmw0")
+offset_right = 351.0
+offset_bottom = 351.0
+color = Color(1, 1, 0.3882353, 1)
 
-[node name="MessageText" type="Label" parent="."]
+[node name="ConversationPartnerText" type="RichTextLabel" parent="."]
 offset_top = -2.0
 offset_right = 245.0
 offset_bottom = 21.0
-text = "Message:"
+theme = ExtResource("3_rsmw0")
+text = "Conversation Partner:"
 
-[node name="SearchField" type="TextEdit" parent="."]
-offset_left = 5.0
+[node name="ConversationPartnerField" type="TextEdit" parent="."]
+offset_left = 3.0
 offset_top = 21.0
-offset_right = 245.0
-offset_bottom = 45.0
+offset_right = 271.0
+offset_bottom = 51.0
+theme = ExtResource("3_rsmw0")
 
-[node name="Button" type="Button" parent="."]
-offset_left = 5.0
-offset_top = 53.0
-offset_right = 77.0
-offset_bottom = 84.0
+[node name="Connect" type="Button" parent="."]
+offset_left = 275.0
+offset_top = 19.0
+offset_right = 347.0
+offset_bottom = 50.0
+theme = ExtResource("3_rsmw0")
 text = "Connect"
 
+[node name="MessageText" type="RichTextLabel" parent="."]
+offset_left = 2.0
+offset_top = 50.0
+offset_right = 247.0
+offset_bottom = 73.0
+theme = ExtResource("3_rsmw0")
+text = "Message:"
+
+[node name="Send" type="Button" parent="."]
+visible = false
+offset_left = 275.0
+offset_top = 99.0
+offset_right = 347.0
+offset_bottom = 130.0
+theme = ExtResource("3_rsmw0")
+text = "Send"
+
+[node name="MessageField" type="TextEdit" parent="."]
+offset_left = 2.0
+offset_top = 74.0
+offset_right = 271.0
+offset_bottom = 130.0
+theme = ExtResource("3_rsmw0")
+
+[node name="PmpConversation" type="ScrollContainer" parent="."]
+offset_left = 2.0
+offset_top = 138.0
+offset_right = 351.0
+offset_bottom = 351.0
+theme = ExtResource("3_rsmw0")
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PmpConversation"]
+layout_mode = 2
+theme = ExtResource("3_rsmw0")
+
 [connection signal="close_requested" from="." to="." method="_on_close_requested"]
+[connection signal="pressed" from="Connect" to="." method="_on_connect_pressed"]
+[connection signal="pressed" from="Send" to="." method="_on_send_pressed"]

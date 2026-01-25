@@ -3,11 +3,11 @@ extends CharacterBody2D
 class_name Letter
 
 var character: String
-var source_label: String
-var destination_label: String
-var direction: Vector2
-
+var conversation_id: String
 var finished: bool
+
+var direction: Vector2
+var sender: Component
 
 func _process(_delta: float) -> void:
 	velocity = direction * GlobalVariables.letter_speed

@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://cx8wxwrswkovf"]
+
+[ext_resource type="Theme" uid="uid://db6upxfpbs22v" path="res://styles/MinimalUI.tres" id="1_7jwcn"]
+[ext_resource type="Script" uid="uid://caq7moyw68weq" path="res://scenes/interfaces/pmp_message.gd" id="1_itnlt"]
+
+[node name="PmpMessage" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 50.0
+theme = ExtResource("1_7jwcn")
+script = ExtResource("1_itnlt")
+
+[node name="Speaker" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(350, 25)
+layout_mode = 2
+theme = ExtResource("1_7jwcn")
+bbcode_enabled = true
+fit_content = true
+
+[node name="Message" type="RichTextLabel" parent="."]
+custom_minimum_size = Vector2(350, 25)
+layout_mode = 2
+theme = ExtResource("1_7jwcn")
+bbcode_enabled = true
+fit_content = true

@@ -4,9 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://b1qun8ql4c6m5" path="res://sprites/letter.png" id="2_c714o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mur1n"]
-radius = 6.0
+radius = 3.0
 
 [node name="Letter" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_c714o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
