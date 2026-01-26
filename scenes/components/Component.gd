@@ -28,9 +28,7 @@ func connect_to_neighbors() -> void:
 		get_tree().current_scene.call_deferred("add_child", wire)
 
 func send_message(protocol: String, destination_label: String, message: String, \
-source_label: String, ps: String = ""):
-	message = protocol + "/" + destination_label + "/" + message + "/" + source_label \
-	+ "/" + ps
+source_label: String) -> bool:
 	var time: String = Time.get_time_string_from_system()
 	var next_door_neighbor: Component = get_neighbor_by_label(destination_label)
 	if next_door_neighbor:
@@ -38,7 +36,7 @@ source_label: String, ps: String = ""):
 		for i in range(message.length()):
 			var letter: Letter = letter_scene.instantiate()
 			letter.character = message[i]
-			letter.conversation_id = source_label + ":" + protocol + ":" + time
+			letter.conversation_id = "%s:%s:%s" % [protocol, source_label, time]
 			letter.direction = direction
 			letter.global_position = global_position
 			letter.sender = self
@@ -46,6 +44,8 @@ source_label: String, ps: String = ""):
 				letter.finished = true
 			get_tree().current_scene.call_deferred("add_child", letter)
 			await get_tree().create_timer(GlobalVariables.letter_delay).timeout
+		return true
+	return false
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Letter:
@@ -59,7 +59,7 @@ func read_message(character: String, conversation_id: String, finished: bool) ->
 	else:
 		message_connections[conversation_id] = character
 	if finished:
-		process_message(message_connections[conversation_id].split("/", true, 4))
+		process_message(message_connections[conversation_id].split("\n"))
 		message_connections.erase(conversation_id)
 		
 @abstract func process_message(paragraphs: PackedStringArray)
@@ -76,3 +76,13 @@ func get_neighboring_connectors() -> Array[Component]:
 		if neighbor.is_in_group("connectors"):
 			connectors.append(neighbor)
 	return connectors
+
+func compose_pmp(destination_label: String, body: String, source_label: String, exclude: String) -> String:
+	var conversation_id: String = "PMP:%s:%s" % [source_label, Time.get_time_string_from_system()]
+	var message: String = """STAMP:PMP
+RECIPIENT:%s
+BODY:%s
+SENDER:%s
+CONVERSATION_ID:%s
+EXCLUDE:%s""" % [destination_label, body, source_label, conversation_id, exclude]
+	return message

@@ -25,16 +25,15 @@ func load_pmp_conversation() -> void:
 				$PmpConversation/VBoxContainer.add_child(pmp_message)
 		
 func _on_send_pressed() -> void:
+	var message: String = component.compose_pmp($ConversationPartnerField.text, $MessageField.text, \
+	component.label, "")
 	var next_door_neighbor: Component = component.get_neighbor_by_label($ConversationPartnerField.text)
 	if next_door_neighbor:
-		component.send_message("PMP", $ConversationPartnerField.text, $MessageField.text, component.label)
+		component.send_message("PMP", $ConversationPartnerField.text, message, component.label)
 	else:
-		var ps: String = "PMP" + "/" + $ConversationPartnerField.text \
-			+ "/" + $MessageField.text + "/" + component.label
 		var connectors: Array[Component] = component.get_neighboring_connectors()
 		for connector in connectors:
-			component.send_message("LP", connector.label, component.label + ":" \
-			+ "PMP" + ":" + Time.get_time_string_from_system(), component.label, ps)
+			component.send_message("PMP", connector.label, message, component.label)
 	component.register_pmp_message($ConversationPartnerField.text, $MessageField.text, component.label)
 
 func _process(_delta: float) -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c5obtxbhm63n4"]
+[gd_scene format=3 uid="uid://c5obtxbhm63n4"]
 
 [ext_resource type="PackedScene" uid="uid://c2i05mehl805a" path="res://scenes/components/personal_informator.tscn" id="1_c2bog"]
 [ext_resource type="Shader" uid="uid://7t1ddkrlxaw0" path="res://scenes/interfaces/vignette.gdshader" id="1_ln6pi"]
@@ -10,9 +10,9 @@ shader_parameter/vignette_intensity = 2.0
 shader_parameter/vignette_opacity = 0.5
 shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
-[node name="KnowledgeWeb" type="Node2D"]
+[node name="KnowledgeWeb" type="Node2D" unique_id=747419864]
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=628221862]
 z_index = -25
 material = SubResource("ShaderMaterial_e10fq")
 offset_left = -256.0
@@ -21,50 +21,50 @@ offset_right = 256.0
 offset_bottom = 144.0
 color = Color(0, 0.32941177, 0.42745098, 1)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2112340777]
 zoom = Vector2(2.5, 2.5)
 
-[node name="PersonalInformator" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
+[node name="PersonalInformator" parent="." unique_id=1243928286 node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
 position = Vector2(-111, -67)
 label = "pi1"
 neighbors = [NodePath("../Connector")]
 
-[node name="PersonalInformator2" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
+[node name="PersonalInformator2" parent="." unique_id=1194592963 node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
 position = Vector2(95, -67)
 label = "pi2"
 neighbors = [NodePath("../Connector2")]
 
-[node name="PersonalInformator3" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
+[node name="PersonalInformator3" parent="." unique_id=1139168699 node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
 position = Vector2(-116, 73)
 label = "pi3"
 neighbors = [NodePath("../Connector3")]
 
-[node name="PersonalInformator4" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
+[node name="PersonalInformator4" parent="." unique_id=247704021 node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
 position = Vector2(103, 74)
 label = "pi4"
 neighbors = [NodePath("../Connector4")]
 
-[node name="Connector" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
+[node name="Connector" parent="." unique_id=701139811 node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
 position = Vector2(-48, -30)
 label = "c1"
 neighbors = [NodePath("../Connector2"), NodePath("../Connector3"), NodePath("../Connector5"), NodePath("../PersonalInformator")]
 
-[node name="Connector2" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
+[node name="Connector2" parent="." unique_id=930259448 node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
 position = Vector2(32, -30)
 label = "c2"
 neighbors = [NodePath("../Connector"), NodePath("../Connector4"), NodePath("../Connector5"), NodePath("../PersonalInformator2")]
 
-[node name="Connector3" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
+[node name="Connector3" parent="." unique_id=2063187622 node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
 position = Vector2(-52, 50)
 label = "c3"
 neighbors = [NodePath("../Connector"), NodePath("../Connector4"), NodePath("../Connector5"), NodePath("../PersonalInformator3")]
 
-[node name="Connector4" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
+[node name="Connector4" parent="." unique_id=1567370130 node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
 position = Vector2(33, 51)
 label = "c4"
 neighbors = [NodePath("../Connector2"), NodePath("../Connector3"), NodePath("../Connector5"), NodePath("../PersonalInformator4")]
 
-[node name="Connector5" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
+[node name="Connector5" parent="." unique_id=1892106087 node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
 position = Vector2(-2, 0)
 label = "c5"
 neighbors = [NodePath("../Connector"), NodePath("../Connector2"), NodePath("../Connector3"), NodePath("../Connector4")]
