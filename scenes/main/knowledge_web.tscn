@@ -25,23 +25,46 @@ color = Color(0, 0.32941177, 0.42745098, 1)
 zoom = Vector2(2.5, 2.5)
 
 [node name="PersonalInformator" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
-position = Vector2(-52, 103)
-label = "test1"
+position = Vector2(-111, -67)
+label = "pi1"
 neighbors = [NodePath("../Connector")]
 
+[node name="PersonalInformator2" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
+position = Vector2(95, -67)
+label = "pi2"
+neighbors = [NodePath("../Connector2")]
+
+[node name="PersonalInformator3" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
+position = Vector2(-116, 73)
+label = "pi3"
+neighbors = [NodePath("../Connector3")]
+
+[node name="PersonalInformator4" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
+position = Vector2(103, 74)
+label = "pi4"
+neighbors = [NodePath("../Connector4")]
+
 [node name="Connector" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
-position = Vector2(13, 16)
-neighbors = [NodePath("../PersonalInformator"), NodePath("../Connector2"), NodePath("../Connector3")]
+position = Vector2(-48, -30)
+label = "c1"
+neighbors = [NodePath("../Connector2"), NodePath("../Connector3"), NodePath("../Connector5"), NodePath("../PersonalInformator")]
 
 [node name="Connector2" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
-position = Vector2(68, -20)
-neighbors = [NodePath("../Connector"), NodePath("../PersonalInformator2"), NodePath("../Connector3")]
+position = Vector2(32, -30)
+label = "c2"
+neighbors = [NodePath("../Connector"), NodePath("../Connector4"), NodePath("../Connector5"), NodePath("../PersonalInformator2")]
 
 [node name="Connector3" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
-position = Vector2(-12, -48)
-neighbors = [NodePath("../Connector"), NodePath("../Connector2")]
+position = Vector2(-52, 50)
+label = "c3"
+neighbors = [NodePath("../Connector"), NodePath("../Connector4"), NodePath("../Connector5"), NodePath("../PersonalInformator3")]
 
-[node name="PersonalInformator2" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
-position = Vector2(219, -88)
-label = "test2"
-neighbors = [NodePath("../Connector2")]
+[node name="Connector4" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
+position = Vector2(33, 51)
+label = "c4"
+neighbors = [NodePath("../Connector2"), NodePath("../Connector3"), NodePath("../Connector5"), NodePath("../PersonalInformator4")]
+
+[node name="Connector5" parent="." node_paths=PackedStringArray("neighbors") instance=ExtResource("3_e10fq")]
+position = Vector2(-2, 0)
+label = "c5"
+neighbors = [NodePath("../Connector"), NodePath("../Connector2"), NodePath("../Connector3"), NodePath("../Connector4")]

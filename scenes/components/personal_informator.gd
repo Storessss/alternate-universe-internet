@@ -4,7 +4,7 @@ var pmp_conversations: Dictionary[String, Array]
 
 var desktop_interface_scene: PackedScene = preload("res://scenes/interfaces/desktop_interface.tscn")
 
-func process_message(paragraphs: PackedStringArray, conversation_id: String):
+func process_message(paragraphs: PackedStringArray):
 	if paragraphs[0] == "PMP":
 		register_pmp_message(paragraphs[3], paragraphs[2], paragraphs[3])
 

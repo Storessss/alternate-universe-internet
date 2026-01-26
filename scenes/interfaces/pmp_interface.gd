@@ -29,10 +29,12 @@ func _on_send_pressed() -> void:
 	if next_door_neighbor:
 		component.send_message("PMP", $ConversationPartnerField.text, $MessageField.text, component.label)
 	else:
+		var ps: String = "PMP" + "/" + $ConversationPartnerField.text \
+			+ "/" + $MessageField.text + "/" + component.label
 		var connectors: Array[Component] = component.get_neighboring_connectors()
 		for connector in connectors:
-			component.send_message("LP", connector.label, "PMP" + "/" + $ConversationPartnerField.text \
-			+ "/" + $MessageField.text + "/" + component.label, component.label)
+			component.send_message("LP", connector.label, component.label + ":" \
+			+ "PMP" + ":" + Time.get_time_string_from_system(), component.label, ps)
 	component.register_pmp_message($ConversationPartnerField.text, $MessageField.text, component.label)
 
 func _process(_delta: float) -> void:

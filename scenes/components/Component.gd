@@ -28,8 +28,9 @@ func connect_to_neighbors() -> void:
 		get_tree().current_scene.call_deferred("add_child", wire)
 
 func send_message(protocol: String, destination_label: String, message: String, \
-source_label: String):
-	message = protocol + "/" + destination_label + "/" + message + "/" + source_label
+source_label: String, ps: String = ""):
+	message = protocol + "/" + destination_label + "/" + message + "/" + source_label \
+	+ "/" + ps
 	var time: String = Time.get_time_string_from_system()
 	var next_door_neighbor: Component = get_neighbor_by_label(destination_label)
 	if next_door_neighbor:
@@ -37,7 +38,7 @@ source_label: String):
 		for i in range(message.length()):
 			var letter: Letter = letter_scene.instantiate()
 			letter.character = message[i]
-			letter.conversation_id = source_label + "/" + protocol + "/" + time
+			letter.conversation_id = source_label + ":" + protocol + ":" + time
 			letter.direction = direction
 			letter.global_position = global_position
 			letter.sender = self
@@ -58,10 +59,10 @@ func read_message(character: String, conversation_id: String, finished: bool) ->
 	else:
 		message_connections[conversation_id] = character
 	if finished:
-		process_message(message_connections[conversation_id].split("/"), conversation_id)
+		process_message(message_connections[conversation_id].split("/", true, 4))
 		message_connections.erase(conversation_id)
 		
-@abstract func process_message(paragraphs: PackedStringArray, conversation_id: String)
+@abstract func process_message(paragraphs: PackedStringArray)
 
 func get_neighbor_by_label(label: String) -> Component:
 	for neighbor in neighbors:
