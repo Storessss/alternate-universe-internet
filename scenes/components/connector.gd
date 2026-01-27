@@ -37,3 +37,6 @@ func process_message(paragraphs: PackedStringArray):
 				for connector in connectors:
 					if connector.label not in exclude:
 						send_message("PMP", connector.label, message, label)
+
+func _on_component_pressed() -> void:
+	GlobalVariables.component_pressed.emit(self)

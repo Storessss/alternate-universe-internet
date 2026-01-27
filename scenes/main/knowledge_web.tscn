@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://c5obtxbhm63n4"]
 
 [ext_resource type="PackedScene" uid="uid://c2i05mehl805a" path="res://scenes/components/personal_informator.tscn" id="1_c2bog"]
+[ext_resource type="PackedScene" uid="uid://3w4wmh0bta5j" path="res://scenes/main/hud.tscn" id="1_d75fy"]
 [ext_resource type="Shader" uid="uid://7t1ddkrlxaw0" path="res://scenes/interfaces/vignette.gdshader" id="1_ln6pi"]
 [ext_resource type="PackedScene" uid="uid://oowb3ora0xnw" path="res://scenes/components/connector.tscn" id="3_e10fq"]
+[ext_resource type="Script" uid="uid://dgngcws8iu7tl" path="res://scenes/main/camera_2d.gd" id="3_gqgy3"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_e10fq"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gqgy3"]
 shader = ExtResource("1_ln6pi")
 shader_parameter/vignette_intensity = 2.0
 shader_parameter/vignette_opacity = 0.5
@@ -12,17 +14,21 @@ shader_parameter/vignette_rgb = Color(0, 0, 0, 1)
 
 [node name="KnowledgeWeb" type="Node2D" unique_id=747419864]
 
-[node name="Background" type="ColorRect" parent="." unique_id=628221862]
-z_index = -25
-material = SubResource("ShaderMaterial_e10fq")
-offset_left = -256.0
-offset_top = -144.0
-offset_right = 256.0
-offset_bottom = 144.0
-color = Color(0, 0.32941177, 0.42745098, 1)
+[node name="Hud" parent="." unique_id=599667800 instance=ExtResource("1_d75fy")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2112340777]
 zoom = Vector2(2.5, 2.5)
+script = ExtResource("3_gqgy3")
+
+[node name="Background" type="ColorRect" parent="Camera2D" unique_id=849133715]
+z_index = -25
+material = SubResource("ShaderMaterial_gqgy3")
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+pivot_offset = Vector2(256, 144)
+color = Color(0, 0.32941177, 0.42745098, 1)
 
 [node name="PersonalInformator" parent="." unique_id=1243928286 node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
 position = Vector2(-111, -67)

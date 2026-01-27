@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2i05mehl805a"]
+[gd_scene format=3 uid="uid://c2i05mehl805a"]
 
 [ext_resource type="PackedScene" uid="uid://b1ifl5g211lwc" path="res://scenes/components/component.tscn" id="1_2om0a"]
 [ext_resource type="Script" uid="uid://cyw4yegmbbvwi" path="res://scenes/components/personal_informator.gd" id="1_s4qn3"]
@@ -7,14 +7,14 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_hvq2d"]
 radius = 10.049875
 
-[node name="PersonalInformator" instance=ExtResource("1_2om0a")]
+[node name="PersonalInformator" unique_id=1440167728 instance=ExtResource("1_2om0a")]
 script = ExtResource("1_s4qn3")
 
-[node name="Interface" parent="." index="0"]
+[node name="Component" parent="." index="0" unique_id=1358936621]
 texture_normal = ExtResource("2_s4qn3")
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
+[node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(635771652) index="0" unique_id=1622115963]
 shape = SubResource("CircleShape2D_hvq2d")
 
-[connection signal="pressed" from="Interface" to="." method="_on_interface_pressed"]
+[connection signal="pressed" from="Component" to="." method="_on_component_pressed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

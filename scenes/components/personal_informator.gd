@@ -22,6 +22,8 @@ func register_pmp_message(conversation_partner: String, message: String, speaker
 	else:
 		pmp_conversations[conversation_partner] = [{speaker: message}]
 
-func _on_interface_pressed() -> void:
-	var desktop_interface: Window = desktop_interface_scene.instantiate()
-	add_child(desktop_interface)
+func _on_component_pressed() -> void:
+	GlobalVariables.component_pressed.emit(self)
+	if GlobalVariables.pointer_tool_selected:
+		var desktop_interface: Window = desktop_interface_scene.instantiate()
+		add_child(desktop_interface)

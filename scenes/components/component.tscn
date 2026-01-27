@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://b1ifl5g211lwc"]
 
-[node name="Component" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://b4apli6inpf77" path="res://sprites/connector.png" id="1_0x4dc"]
 
-[node name="Interface" type="TextureButton" parent="."]
+[node name="Component" type="Node2D" unique_id=395178323]
+
+[node name="Component" type="TextureButton" parent="." unique_id=1358936621]
 offset_left = -15.0
 offset_top = -19.0
 offset_right = 15.0
 offset_bottom = 11.0
+texture_normal = ExtResource("1_0x4dc")
 stretch_mode = 5
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." unique_id=635771652]
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1622115963]
