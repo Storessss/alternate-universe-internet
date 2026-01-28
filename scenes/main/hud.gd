@@ -9,6 +9,7 @@ enum Tool {
 var selected_tool: Tool
 var pressed_component: Component
 var components_to_wire: Array[Component]
+var wire: Line2D
 
 var viewport_mouse_position: Vector2
 var canvaslayer_mouse_position: Vector2
@@ -37,6 +38,20 @@ func _process(_delta: float) -> void:
 					components_to_wire[0].connect_to_neighbors()
 					components_to_wire[1].connect_to_neighbors()
 				components_to_wire.clear()
+		if components_to_wire.size() == 1:
+			if wire:
+				wire.points[0] = components_to_wire[0].global_position
+				wire.points[1] = canvaslayer_mouse_position
+			else:
+				wire = Line2D.new()
+				wire.width = 4.0
+				if wire.points.size() < 2:
+					wire.add_point(Vector2.ZERO)
+					wire.add_point(Vector2.ZERO)
+				get_tree().current_scene.add_child(wire)
+		else:
+			if wire:
+				wire.queue_free()
 	
 	viewport_mouse_position = get_viewport().get_mouse_position()
 	canvaslayer_mouse_position = get_viewport().get_canvas_transform().affine_inverse() * viewport_mouse_position

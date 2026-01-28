@@ -5,6 +5,8 @@ class_name Component
 
 @export var label: String
 @export var neighbors: Array[Component]
+var already_connected_neighbors: Array[Component]
+@export var interface_scene: PackedScene
 
 var letter_scene: PackedScene = preload("res://scenes/components/letter.tscn")
 
@@ -12,20 +14,23 @@ var message_connections: Dictionary[String, String]
 
 func _ready() -> void:
 	connect_to_neighbors()
+	$Component.connect("pressed", Callable(self, "_on_component_pressed"))
 
 func connect_to_neighbors() -> void:
 	for neighbor in neighbors:
-		var wire: Line2D = Line2D.new()
-		wire.add_point(global_position)
-		wire.add_point(neighbor.global_position)
-		wire.default_color = Color(
-			randf_range(0.0, 1.0),
-			randf_range(0.0, 1.0),
-			randf_range(0.0, 1.0)
-		)
-		wire.width = 2.0
-		wire.z_index = -5
-		get_tree().current_scene.call_deferred("add_child", wire)
+		if neighbor not in already_connected_neighbors:
+			var wire: Line2D = Line2D.new()
+			wire.add_point(global_position)
+			wire.add_point(neighbor.global_position)
+			wire.default_color = Color(
+				randf_range(0.0, 1.0),
+				randf_range(0.0, 1.0),
+				randf_range(0.0, 1.0)
+			)
+			wire.width = 2.0
+			wire.z_index = -5
+			get_tree().current_scene.call_deferred("add_child", wire)
+			already_connected_neighbors.append(neighbor)
 
 func send_message(protocol: String, destination_label: String, message: String, \
 source_label: String) -> bool:
@@ -86,3 +91,9 @@ SENDER:%s
 CONVERSATION_ID:%s
 EXCLUDE:%s""" % [destination_label, body, source_label, conversation_id, exclude]
 	return message
+
+func _on_component_pressed():
+	GlobalVariables.component_pressed.emit(self)
+	if GlobalVariables.pointer_tool_selected and interface_scene:
+		var interface: Window = interface_scene.instantiate()
+		add_child(interface)

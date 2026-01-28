@@ -3,12 +3,14 @@
 [ext_resource type="PackedScene" uid="uid://b1ifl5g211lwc" path="res://scenes/components/component.tscn" id="1_2om0a"]
 [ext_resource type="Script" uid="uid://cyw4yegmbbvwi" path="res://scenes/components/personal_informator.gd" id="1_s4qn3"]
 [ext_resource type="Texture2D" uid="uid://77ystatm7sfw" path="res://sprites/personal_informator.png" id="2_s4qn3"]
+[ext_resource type="PackedScene" uid="uid://bdbrd6yjvbp3p" path="res://scenes/interfaces/desktop_interface.tscn" id="3_x4216"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hvq2d"]
 radius = 10.049875
 
 [node name="PersonalInformator" unique_id=1440167728 instance=ExtResource("1_2om0a")]
 script = ExtResource("1_s4qn3")
+interface_scene = ExtResource("3_x4216")
 
 [node name="Component" parent="." index="0" unique_id=1358936621]
 texture_normal = ExtResource("2_s4qn3")
@@ -16,5 +18,4 @@ texture_normal = ExtResource("2_s4qn3")
 [node name="CollisionShape2D" parent="Area2D" parent_id_path=PackedInt32Array(635771652) index="0" unique_id=1622115963]
 shape = SubResource("CircleShape2D_hvq2d")
 
-[connection signal="pressed" from="Component" to="." method="_on_component_pressed"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

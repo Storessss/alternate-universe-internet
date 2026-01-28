@@ -2,9 +2,10 @@
 
 [ext_resource type="Script" uid="uid://doxbvbchfbgyn" path="res://scenes/main/hud.gd" id="1_kvbcn"]
 [ext_resource type="Shader" uid="uid://7t1ddkrlxaw0" path="res://scenes/interfaces/vignette.gdshader" id="1_ltp6p"]
-[ext_resource type="Texture2D" uid="uid://dc86y7scyojrx" path="res://sprites/information_server.png" id="2_osg0h"]
+[ext_resource type="Texture2D" uid="uid://d21qr7ee6bcl4" path="res://sprites/pointer_tool.png" id="3_bhafg"]
 [ext_resource type="Texture2D" uid="uid://77ystatm7sfw" path="res://sprites/personal_informator.png" id="3_kvbcn"]
 [ext_resource type="Texture2D" uid="uid://b4apli6inpf77" path="res://sprites/connector.png" id="4_bhafg"]
+[ext_resource type="Texture2D" uid="uid://cc4ubrcu40qc1" path="res://sprites/wire_tool.png" id="4_cad0p"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ga13h"]
 shader = ExtResource("1_ltp6p")
@@ -38,6 +39,7 @@ offset_left = -640.0
 offset_top = -128.0
 offset_right = 640.0
 offset_bottom = 40.0
+grow_horizontal = 2
 color = Color(0.5411765, 1, 1, 1)
 
 [node name="Tools" type="HBoxContainer" parent="ToolBar" unique_id=871051845]
@@ -58,13 +60,13 @@ theme_override_constants/separation = 20
 [node name="Pointer" type="TextureButton" parent="ToolBar/Tools" unique_id=601696891]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-texture_normal = ExtResource("2_osg0h")
+texture_normal = ExtResource("3_bhafg")
 stretch_mode = 5
 
 [node name="Wire" type="TextureButton" parent="ToolBar/Tools" unique_id=1350372622]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-texture_normal = ExtResource("2_osg0h")
+texture_normal = ExtResource("4_cad0p")
 stretch_mode = 5
 
 [node name="PI" type="TextureButton" parent="ToolBar/Tools" unique_id=1843611676]

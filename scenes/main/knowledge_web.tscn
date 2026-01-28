@@ -27,7 +27,6 @@ offset_left = -640.0
 offset_top = -360.0
 offset_right = 640.0
 offset_bottom = 360.0
-pivot_offset = Vector2(256, 144)
 color = Color(0, 0.32941177, 0.42745098, 1)
 
 [node name="PersonalInformator" parent="." unique_id=1243928286 node_paths=PackedStringArray("neighbors") instance=ExtResource("1_c2bog")]
